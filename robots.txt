@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://WizardotheFool.github.io/bobs-builds/sitemap.xml
