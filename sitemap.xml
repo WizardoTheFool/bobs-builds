@@ -1,12 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/shop.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/custom.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/warranty.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/contact.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/privacy.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/products/good.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/products/better.html</loc></url>
-  <url><loc>https://WizardotheFool.github.io/bobs-builds/products/best.html</loc></url>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+                      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/shop.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/custom.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/warranty.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/contact.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/privacy.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/products/good.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/products/better.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://wizardothefool.github.io/bobs-builds/products/best.html</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
