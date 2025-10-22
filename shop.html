@@ -4,19 +4,23 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Shop — Bob’s Builds</title>
+  <meta name="description" content="Shop custom gaming PCs by Bob’s Builds — ready-to-ship 1080p, 1440p, and 4K rigs with Windows 11 Pro. Built and tested in the UK."/>
   <link rel="stylesheet" href="assets/styles.css"/>
+  <link rel="manifest" href="assets/manifest.webmanifest">
+  <meta name="theme-color" content="#0d0f14">
 </head>
 <body>
   <div id="site-header"></div>
 
   <section class="container section">
     <h2>Our PCs</h2>
+
     <div class="grid two" style="margin:.5rem 0 1rem">
       <label>Search
-        <input id="q" placeholder="RTX 4070, 1TB, Ryzen…">
+        <input id="q" placeholder="RTX 4070, 1TB, Ryzen…" aria-label="Search products">
       </label>
       <label>Tier
-        <select id="tier">
+        <select id="tier" aria-label="Filter by tier">
           <option value="all">All</option>
           <option value="good">Good</option>
           <option value="better">Better</option>
@@ -27,7 +31,7 @@
 
     <div class="grid two" style="margin:-.5rem 0 1rem">
       <label>Sort
-        <select id="sort">
+        <select id="sort" aria-label="Sort products">
           <option value="featured">Featured</option>
           <option value="price_asc">Price: Low → High</option>
           <option value="price_desc">Price: High → Low</option>
@@ -41,14 +45,19 @@
     </div>
 
     <div id="shop-grid" class="grid cards" aria-live="polite">
-      <!-- skeletons -->
+      <!-- Skeleton loaders (shown before JS loads) -->
       <div class="skeleton card"></div>
       <div class="skeleton card"></div>
       <div class="skeleton card"></div>
     </div>
+
+    <noscript>
+      <p class="muted">⚠️ JavaScript is disabled — please enable it to browse our live PC listings.</p>
+    </noscript>
   </section>
 
   <div id="site-footer"></div>
+
   <script src="assets/include.js"></script>
   <script src="assets/main.js"></script>
 </body>
