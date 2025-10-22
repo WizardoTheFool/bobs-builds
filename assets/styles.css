@@ -131,3 +131,8 @@ dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 
 /* recent pills */
 .pill{display:inline-block;padding:.3rem .6rem;border:1px solid #2a3752;border-radius:999px;margin:.2rem .2rem 0 0}
+.footer-links{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+.socials{display:flex;gap:.8rem;font-size:1.3rem}
+.socials a{color:var(--muted);transition:.2s}
+.socials a:hover{color:var(--accent)}
+
