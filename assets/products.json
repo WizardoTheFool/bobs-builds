@@ -16,8 +16,12 @@
       "stock": 5,
       "rating": 4.7,
       "reviews_count": 23,
-      "thumb": "assets/img/good-main.jpg",
-      "gallery": ["assets/img/good-main.jpg","assets/img/good-2.jpg","assets/img/good-3.jpg"],
+      "thumb": "https://placehold.co/800x450/png?text=GOOD+1080p",
+      "gallery": [
+        "https://placehold.co/1200x675/png?text=GOOD+Main",
+        "https://placehold.co/1200x675/png?text=GOOD+Angle",
+        "https://placehold.co/1200x675/png?text=GOOD+Inside"
+      ],
       "fb": "https://www.facebook.com/marketplace/ITEM-GOOD",
       "ebay": "https://www.ebay.co.uk/itm/ITEM-GOOD"
     },
@@ -37,8 +41,11 @@
       "stock": 2,
       "rating": 4.9,
       "reviews_count": 41,
-      "thumb": "assets/img/better-main.jpg",
-      "gallery": ["assets/img/better-main.jpg","assets/img/better-2.jpg"],
+      "thumb": "https://placehold.co/800x450/png?text=BETTER+1440p",
+      "gallery": [
+        "https://placehold.co/1200x675/png?text=BETTER+Main",
+        "https://placehold.co/1200x675/png?text=BETTER+Angle"
+      ],
       "fb": "https://www.facebook.com/marketplace/ITEM-BETTER",
       "ebay": "https://www.ebay.co.uk/itm/ITEM-BETTER"
     },
@@ -58,8 +65,11 @@
       "stock": 0,
       "rating": 5.0,
       "reviews_count": 12,
-      "thumb": "assets/img/best-main.jpg",
-      "gallery": ["assets/img/best-main.jpg","assets/img/best-2.jpg"],
+      "thumb": "https://placehold.co/800x450/png?text=BEST+1440p/4K",
+      "gallery": [
+        "https://placehold.co/1200x675/png?text=BEST+Main",
+        "https://placehold.co/1200x675/png?text=BEST+Angle"
+      ],
       "fb": "https://www.facebook.com/marketplace/ITEM-BEST",
       "ebay": "https://www.ebay.co.uk/itm/ITEM-BEST"
     }
