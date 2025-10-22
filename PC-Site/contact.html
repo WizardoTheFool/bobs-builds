@@ -1,1 +1,35 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Contact — Bob’s Builds</title>
+<link rel="stylesheet" href="assets/styles.css"/>
+</head><body>
+<div id="site-header"></div>
+
+<section class="container section">
+  <h2>Contact</h2>
+  <div class="contact-grid">
+    <div>
+      <p><strong>Email:</strong> <a href="mailto:bobsbuildsuk@gmail.com">bobsbuildsuk@gmail.com</a></p>
+      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/YOURPAGE" target="_blank" rel="noopener">facebook.com/YOURPAGE</a></p>
+      <p><strong>eBay:</strong> <a href="https://www.ebay.co.uk/usr/YOURSHOP" target="_blank" rel="noopener">ebay.co.uk/usr/YOURSHOP</a></p>
+    </div>
+    <form id="contact-form" class="form" aria-label="Contact form">
+      <label>Your email<input required type="email" name="from" placeholder="you@example.com"/></label>
+      <label>Message<textarea required name="message" rows="4" placeholder="Hi Bob’s Builds, I’d like to…"></textarea></label>
+      <button class="btn btn-outline" type="submit">Send</button>
+      <p class="tiny muted">This opens your email app with a prefilled message.</p>
+    </form>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="assets/include.js"></script>
+<script>
+document.getElementById('contact-form').addEventListener('submit',(e)=>{
+ e.preventDefault();
+ const fd=new FormData(e.target);
+ location.href=`mailto:bobsbuildsuk@gmail.com?subject=${encodeURIComponent('Website enquiry from '+fd.get('from'))}&body=${encodeURIComponent(fd.get('message'))}`;
+});
+</script>
+</body></html>
 
