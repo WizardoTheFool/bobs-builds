@@ -69,7 +69,7 @@ async function renderShop() {
     if (sort === 'price_desc') return (b.sale_price ?? b.price) - (a.sale_price ?? a.price);
     if (sort === 'name_asc') return a.name.localeCompare(b.name);
     if (sort === 'rating_desc') return (b.rating||0) - (a.rating||0);
-    return 0; // featured
+    return 0;
   });
 
   // Render
@@ -116,7 +116,6 @@ async function renderShop() {
     `;
   }).join('');
 
-  // Wire ups
   wireLightbox();
   $$('#shop-grid [data-fav]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -170,7 +169,6 @@ async function enhanceProduct(slug) {
   const p = products.find(x => x.slug === slug);
   if (!p) return;
 
-  // recent
   pushRecent(slug);
 
   if (holder) {
@@ -192,7 +190,6 @@ async function enhanceProduct(slug) {
     wireLightbox();
   }
 
-  // favourite toggle (if you add a button with id="fav-toggle" on product pages)
   const favBtn = document.getElementById('fav-toggle');
   if (favBtn){
     if (getFavs().includes(slug)) favBtn.classList.add('active');
@@ -204,7 +201,6 @@ async function enhanceProduct(slug) {
 
   updateFavCount();
 
-  // recently viewed preview (if you add a container with id="recent-list")
   const recent = getRecent().filter(s => s !== slug).slice(0,3);
   const recWrap = document.getElementById('recent-list');
   if (recWrap){
@@ -216,13 +212,13 @@ async function enhanceProduct(slug) {
   }
 }
 
-// PWA register (relative path for root vs /products/)
+// ✅ UPDATED PWA registration (root-level sw.js)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swPath = location.pathname.includes('/products/')
-      ? '../assets/sw.js'
-      : 'assets/sw.js';
-    navigator.serviceWorker.register(swPath).catch(()=>{});
+      ? '../sw.js'
+      : 'sw.js';
+    navigator.serviceWorker.register(swPath, { scope: './' }).catch(()=>{});
   });
 }
 
