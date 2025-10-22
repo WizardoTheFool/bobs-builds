@@ -25,13 +25,30 @@
       </label>
     </div>
 
-    <!-- JS will render product cards here -->
-    <div id="shop-grid" class="grid cards" aria-live="polite"></div>
+    <div class="grid two" style="margin:-.5rem 0 1rem">
+      <label>Sort
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="price_asc">Price: Low → High</option>
+          <option value="price_desc">Price: High → Low</option>
+          <option value="name_asc">Name A → Z</option>
+          <option value="rating_desc">Rating</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;margin-top:1.6rem">
+        <input type="checkbox" id="onlyFavs"> Show favourites only
+      </label>
+    </div>
+
+    <div id="shop-grid" class="grid cards" aria-live="polite">
+      <!-- skeletons -->
+      <div class="skeleton card"></div>
+      <div class="skeleton card"></div>
+      <div class="skeleton card"></div>
+    </div>
   </section>
 
   <div id="site-footer"></div>
-
-  <!-- Load includes first (header/footer), then shop logic -->
   <script src="assets/include.js"></script>
   <script src="assets/main.js"></script>
 </body>
