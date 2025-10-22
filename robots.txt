@@ -1,3 +1,11 @@
+# robots.txt for Bob’s Builds (GitHub Pages)
+
 User-agent: *
 Allow: /
-Sitemap: https://WizardotheFool.github.io/bobs-builds/sitemap.xml
+
+# Block some unnecessary directories (optional)
+Disallow: /assets/
+Disallow: /partials/
+
+# Sitemap
+Sitemap: https://wizardothefool.github.io/bobs-builds/sitemap.xml
