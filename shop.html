@@ -1,41 +1,38 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Shop — Bob’s Builds</title>
-<link rel="stylesheet" href="assets/styles.css"/>
-</head><body>
-<div id="site-header"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Shop — Bob’s Builds</title>
+  <link rel="stylesheet" href="assets/styles.css"/>
+</head>
+<body>
+  <div id="site-header"></div>
 
-<section class="container section">
-  <h2>Our PCs</h2>
-  <div class="grid two" style="margin:.5rem 0 1rem">
-    <label>Search
-      <input id="q" placeholder="RTX 4070, 1TB, Ryzen…">
-    </label>
-    <label>Tier
-      <select id="tier">
-        <option value="all">All</option>
-        <option value="good">Good</option>
-        <option value="better">Better</option>
-        <option value="best">Best</option>
-      </select>
-    </label>
-  </div>
-  <div id="shop-grid" class="grid cards" aria-live="polite"></div>
-</section>
-<script src="assets/main.js"></script>
+  <section class="container section">
+    <h2>Our PCs</h2>
+    <div class="grid two" style="margin:.5rem 0 1rem">
+      <label>Search
+        <input id="q" placeholder="RTX 4070, 1TB, Ryzen…">
+      </label>
+      <label>Tier
+        <select id="tier">
+          <option value="all">All</option>
+          <option value="good">Good</option>
+          <option value="better">Better</option>
+          <option value="best">Best</option>
+        </select>
+      </label>
+    </div>
 
+    <!-- JS will render product cards here -->
+    <div id="shop-grid" class="grid cards" aria-live="polite"></div>
+  </section>
 
-    <article class="card">
-      <div class="badge">PREMIUM • 1440p/4K</div>
-      <h3>"BEST" 1440p+ Gaming PC</h3>
-      <ul class="specs"><li>i7 / Ryzen 7</li><li>GeForce RTX 4080 Super</li><li>32–64 GB DDR5 • 2 TB NVMe</li><li>Windows 11 Pro</li></ul>
-      <p class="price">£1,999.99</p>
-      <div class="btn-row"><a class="btn btn-primary" href="products/best.html">View details</a></div>
-    </article>
-  </div>
-</section>
+  <div id="site-footer"></div>
 
-<div id="site-footer"></div>
-<script src="assets/include.js"></script>
-</body></html>
-
+  <!-- Load includes first (header/footer), then shop logic -->
+  <script src="assets/include.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
