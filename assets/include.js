@@ -1,15 +1,18 @@
-<script>
 // inject header/footer, handle mobile nav, highlight active link
 (async () => {
+  const docPath = location.pathname;
+  const inProducts = /\/products\//.test(docPath);
+  const base = inProducts ? '../' : '';
+
   const headerSpot = document.getElementById('site-header');
   const footerSpot = document.getElementById('site-footer');
 
   if (headerSpot) {
-    const h = await fetch('partials/header.html');
+    const h = await fetch(base + 'partials/header.html');
     headerSpot.innerHTML = await h.text();
   }
   if (footerSpot) {
-    const f = await fetch('partials/footer.html');
+    const f = await fetch(base + 'partials/footer.html');
     footerSpot.innerHTML = await f.text();
   }
 
@@ -27,9 +30,11 @@
     }
 
     // active link
-    const file = location.pathname.split('/').pop() || 'index.html';
+    const file = docPath.split('/').pop() || 'index.html';
     document.querySelectorAll('[data-nav]').forEach(a => {
-      if (a.getAttribute('href') === file) a.classList.add('active');
+      const href = a.getAttribute('href');
+      const shouldActivate = (inProducts && href === 'shop.html') || href === file;
+      if (shouldActivate) a.classList.add('active');
     });
 
     // footer year
@@ -37,5 +42,3 @@
     if (y) y.textContent = new Date().getFullYear();
   });
 })();
-</script>
-
