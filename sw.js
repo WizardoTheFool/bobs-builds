@@ -1,27 +1,38 @@
-const VERSION = 'bb-v2';
+const VERSION = 'bb-v3';
 
-// Derive the base path from the SW scope (e.g. https://.../bobs-builds/)
+// Base path from scope (works on GitHub Pages and forks)
 const SCOPE_URL = new URL(self.registration.scope);
-const BASE = SCOPE_URL.pathname.endsWith('/') ? SCOPE_URL.pathname : SCOPE_URL.pathname + '/';
+const BASE = SCOPE_URL.pathname.endsWith('/') ? SCOPE_URL.pathname : (SCOPE_URL.pathname + '/');
 
-// Build asset URLs relative to BASE so it works on forks/renames
-const ASSETS = [
-  '',                // BASE itself (serves index.html on GH Pages)
+// Core assets to precache
+const PRECACHE_ASSETS = [
+  '',                    // BASE itself (GH Pages serves index.html)
   'index.html',
   'assets/styles.css',
   'assets/include.js',
   'assets/main.js',
   'assets/products.json',
-  // add icons/manifest if you want them precached:
   'assets/manifest.webmanifest',
   'assets/img/icon-192.png',
   'assets/img/icon-512.png'
 ].map(p => BASE + p);
 
+// ----- Install / Activate ----------------------------------------------------
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(VERSION);
-    await cache.addAll(ASSETS);
+    await cache.addAll(PRECACHE_ASSETS).catch(()=>{});
+    // Precache product images (best effort)
+    try {
+      const res = await fetch(BASE + 'assets/products.json', { cache: 'no-cache' });
+      const data = await res.json();
+      const imgs = (data.products || []).flatMap(p => [p.thumb, ...(p.gallery || [])]);
+      await cache.addAll(imgs.map(src => src.startsWith('http') ? src : (BASE + src.replace(/^\//,''))));
+    } catch {}
+    // Navigation preload for faster HTML
+    if (self.registration.navigationPreload) {
+      await self.registration.navigationPreload.enable().catch(()=>{});
+    }
     self.skipWaiting();
   })());
 });
@@ -34,47 +45,62 @@ self.addEventListener('activate', (event) => {
   })());
 });
 
-// Network-first for HTML; cache-first for other assets
+// Allow page to tell SW to activate immediately
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
+
+// ----- Fetch strategy --------------------------------------------------------
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-  const url = new URL(req.url);
 
-  // Only handle same-origin
+  // Only same-origin
+  const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
-  const isHTML =
-    req.mode === 'navigate' ||
-    (req.headers.get('accept') || '').includes('text/html');
+  // Only GET is cacheable
+  if (req.method !== 'GET') return;
 
+  // HTML: network-first (with preload), fallback to cache then index.html
+  const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
   if (isHTML) {
-    event.respondWith(
-      fetch(req)
-        .then(res => {
-          const copy = res.clone();
+    event.respondWith((async () => {
+      try {
+        // Navigation preload if available
+        const preload = await event.preloadResponse;
+        const netRes = preload || await fetch(req);
+        // only cache good responses
+        if (netRes && netRes.ok) {
+          const copy = netRes.clone();
           caches.open(VERSION).then(c => c.put(req, copy));
-          return res;
-        })
-        .catch(async () => {
-          const cache = await caches.open(VERSION);
-          // Try cached page first
-          const cached = await cache.match(req);
-          if (cached) return cached;
-          // Fallback to cached index.html
-          return cache.match(BASE + 'index.html') || Response.error();
-        })
-    );
+        }
+        return netRes;
+      } catch {
+        const cache = await caches.open(VERSION);
+        return (await cache.match(req)) ||
+               (await cache.match(BASE + 'index.html')) ||
+               Response.error();
+      }
+    })());
     return;
   }
 
-  // For CSS/JS/images: cache-first, then network
-  event.respondWith(
-    caches.match(req).then(cached => {
-      if (cached) return cached;
-      return fetch(req).then(res => {
-        const copy = res.clone();
-        caches.open(VERSION).then(c => c.put(req, copy));
-        return res;
-      });
-    })
-  );
+  // Assets (CSS/JS/images/json): cache-first, then network with background update
+  event.respondWith((async () => {
+    const cache = await caches.open(VERSION);
+    const cached = await cache.match(req);
+    if (cached) return cached;
+
+    try {
+      const res = await fetch(req);
+      // Cache successful, same-origin responses
+      if (res && res.ok && res.type !== 'opaque') {
+        cache.put(req, res.clone());
+      }
+      return res;
+    } catch {
+      // As a last resort, try index.html for same-origin navigations to subpaths
+      return (await cache.match(BASE + 'index.html')) || Response.error();
+    }
+  })());
 });
