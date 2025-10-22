@@ -1,35 +1,77 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Contact — Bob’s Builds</title>
-<link rel="stylesheet" href="assets/styles.css"/>
-</head><body>
-<div id="site-header"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Contact — Bob’s Builds</title>
+  <meta name="description" content="Contact Bob’s Builds — email, Facebook and eBay links. Send us your message for custom builds, support, or sales enquiries."/>
+  <link rel="stylesheet" href="assets/styles.css"/>
+  <link rel="manifest" href="assets/manifest.webmanifest">
+  <meta name="theme-color" content="#0d0f14">
+</head>
+<body>
+  <div id="site-header"></div>
 
-<section class="container section">
-  <h2>Contact</h2>
-  <div class="contact-grid">
-    <div>
-      <p><strong>Email:</strong> <a href="mailto:bobsbuildsuk@gmail.com">bobsbuildsuk@gmail.com</a></p>
-      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/YOURPAGE" target="_blank" rel="noopener">facebook.com/YOURPAGE</a></p>
-      <p><strong>eBay:</strong> <a href="https://www.ebay.co.uk/usr/YOURSHOP" target="_blank" rel="noopener">ebay.co.uk/usr/YOURSHOP</a></p>
+  <section class="container section">
+    <h2>Contact</h2>
+
+    <div class="contact-grid">
+      <div>
+        <p><strong>Email:</strong> <a href="mailto:bobsbuildsuk@gmail.com">bobsbuildsuk@gmail.com</a></p>
+        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/YOURPAGE" target="_blank" rel="noopener">facebook.com/YOURPAGE</a></p>
+        <p><strong>eBay:</strong> <a href="https://www.ebay.co.uk/usr/YOURSHOP" target="_blank" rel="noopener">ebay.co.uk/usr/YOURSHOP</a></p>
+        <p class="tiny muted">We usually reply within one working day.</p>
+      </div>
+
+      <!-- Mailto-based form -->
+      <form id="contact-form" class="form" aria-label="Contact form" action="mailto:bobsbuildsuk@gmail.com" method="post">
+        <label for="from">Your email
+          <input id="from" name="from" type="email" placeholder="you@example.com" autocomplete="email" required/>
+        </label>
+
+        <label for="message">Message
+          <textarea id="message" name="message" rows="4" placeholder="Hi Bob’s Builds, I’d like to…" required></textarea>
+        </label>
+
+        <!-- Honeypot (spam trap) -->
+        <label class="tiny muted" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+          If you are human, leave this field blank:
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </label>
+
+        <button class="btn btn-outline" type="submit">Send</button>
+        <p class="tiny muted">This opens your email app with a prefilled message. By contacting us you agree to our <a href="privacy.html">privacy notice</a>.</p>
+
+        <noscript>
+          <p class="tiny muted">JavaScript is off. Click to email us directly:
+            <a class="btn" href="mailto:bobsbuildsuk@gmail.com?subject=Website%20enquiry&body=Please%20include%20your%20contact%20details.">Open email</a>
+          </p>
+        </noscript>
+      </form>
     </div>
-    <form id="contact-form" class="form" aria-label="Contact form">
-      <label>Your email<input required type="email" name="from" placeholder="you@example.com"/></label>
-      <label>Message<textarea required name="message" rows="4" placeholder="Hi Bob’s Builds, I’d like to…"></textarea></label>
-      <button class="btn btn-outline" type="submit">Send</button>
-      <p class="tiny muted">This opens your email app with a prefilled message.</p>
-    </form>
-  </div>
-</section>
+  </section>
 
-<div id="site-footer"></div>
-<script src="assets/include.js"></script>
-<script>
-document.getElementById('contact-form').addEventListener('submit',(e)=>{
- e.preventDefault();
- const fd=new FormData(e.target);
- location.href=`mailto:bobsbuildsuk@gmail.com?subject=${encodeURIComponent('Website enquiry from '+fd.get('from'))}&body=${encodeURIComponent(fd.get('message'))}`;
-});
-</script>
-</body></html>
+  <div id="site-footer"></div>
+  <script src="assets/include.js"></script>
+  <script>
+    // Build a clean mailto link; keep mailto fallback via form action if JS is blocked
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
+      const fd = new FormData(form);
+      // Honeypot check
+      if ((fd.get('website') || '').trim() !== '') return; // likely a bot, silently ignore
+
+      const from = (fd.get('from') || '').trim();
+      const msg  = (fd.get('message') || '').trim();
+
+      const subject = encodeURIComponent('Website enquiry from ' + from);
+      const body = encodeURIComponent(msg);
+
+      // open mail client
+      window.location.href = `mailto:bobsbuildsuk@gmail.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
