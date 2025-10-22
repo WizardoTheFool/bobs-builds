@@ -1,1 +1,56 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Custom Builds — Bob’s Builds</title>
+<link rel="stylesheet" href="assets/styles.css"/>
+</head><body>
+<div id="site-header"></div>
+
+<section class="container section">
+  <h2>Custom Builds & Custom Cases</h2>
+  <p>Tell us your budget and target games. We’ll reply with a spec and lead time.</p>
+
+  <form id="custom-form" class="form" aria-label="Custom build request">
+    <div class="grid two">
+      <label>Full name<input required name="name" placeholder="Jamie Smith"/></label>
+      <label>Email<input required type="email" name="email" placeholder="you@example.com"/></label>
+    </div>
+    <div class="grid two">
+      <label>Budget (GBP)<input required type="number" name="budget" placeholder="1200" min="400" step="50"/></label>
+      <label>Target resolution
+        <select name="resolution"><option>1080p</option><option selected>1440p</option><option>4K</option></select>
+      </label>
+    </div>
+    <label>Games / Use case<textarea name="games" rows="3"></textarea></label>
+    <label>Aesthetic & case ideas (optional)<textarea name="aesthetic" rows="2"></textarea></label>
+    <div class="grid two">
+      <label>How should we contact you?
+        <select name="contact_pref"><option>Email</option><option>Facebook</option><option>Phone</option></select>
+      </label>
+      <label>Facebook profile or phone (optional)<input name="handle"/></label>
+    </div>
+    <button class="btn btn-primary" type="submit">Send Request</button>
+    <p class="tiny muted">By submitting, you agree to our <a href="privacy.html">privacy notice</a>.</p>
+  </form>
+</section>
+
+<div id="site-footer"></div>
+<script src="assets/include.js"></script>
+<script>
+document.getElementById('custom-form').addEventListener('submit',(e)=>{
+ e.preventDefault();
+ const fd=new FormData(e.target);
+ const subject=encodeURIComponent(`Custom PC — £${fd.get('budget')} — ${fd.get('resolution')}`);
+ const body=encodeURIComponent(
+`Name: ${fd.get('name')}
+Email: ${fd.get('email')}
+Budget: £${fd.get('budget')}
+Resolution: ${fd.get('resolution')}
+Games: ${fd.get('games')}
+Aesthetic: ${fd.get('aesthetic')}
+Contact: ${fd.get('contact_pref')}
+FB/Phone: ${fd.get('handle')}`);
+ location.href=`mailto:bobsbuildsuk@gmail.com?subject=${subject}&body=${body}`;
+});
+</script>
+</body></html>
 
