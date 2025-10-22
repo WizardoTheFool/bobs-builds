@@ -85,4 +85,29 @@ dialog.lb{border:0;border-radius:1rem;padding:0;background:#0b1220}
 .ok{color:#16a34a}
 .warn{color:#f59e0b}
 
+/* sale pricing */
+.price .was{color:#9aa3b2;text-decoration:line-through;margin-right:.4rem}
+.price .now{font-weight:700}
+.badge .sale{color:#f59e0b}
+
+/* stock state colours */
+.ok{color:#16a34a}
+.warn{color:#f59e0b}
+.danger{color:#ef4444}
+
+/* rating + favourites */
+.rating{display:flex;align-items:center;gap:.4rem;margin:.2rem 0 .6rem}
+.stars{letter-spacing:.06em}
+.fav-btn{margin-left:auto;background:transparent;border:0;font-size:1.1rem;cursor:pointer}
+.fav-btn.active{filter:drop-shadow(0 0 6px rgba(255,80,100,.6))}
+
+/* skeleton cards */
+.skeleton{min-height:260px;position:relative;overflow:hidden}
+.skeleton::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#101521 25%,#1a2130 37%,#101521 63%);animation:shimmer 1.2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* recent pills */
+.pill{display:inline-block;padding:.3rem .6rem;border:1px solid #2a3752;border-radius:999px;margin:.2rem .2rem 0 0}
+
+
 
