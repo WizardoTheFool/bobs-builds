@@ -136,3 +136,55 @@ dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 .socials a{color:var(--muted);transition:.2s}
 .socials a:hover{color:var(--accent)}
 
+/* sticky header */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 999;
+}
+
+/* promo bar */
+.bar {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  font-size: .9rem;
+  padding: .4rem 1rem;
+}
+.bar strong { color: #fff; }
+
+/* brand spacing */
+.brand span {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* active nav underline for clarity */
+.nav-links a.active {
+  background: #1a2333;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* mobile menu improvements */
+.nav-toggle {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.nav-links li {
+  list-style: none;
+}
+
+/* favourites counter highlight */
+.favs-link {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.favs-link #fav-count {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+
