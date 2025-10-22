@@ -4,12 +4,43 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bob’s Builds — Custom & Prebuilt Gaming PCs (UK)</title>
-  <meta name="description" content="Custom and prebuilt gaming PCs in the UK. Built, thermally tested, and ready to ship. 12-month RTB warranty."/>
-  <link rel="stylesheet" href="assets/styles.css"/>
-  <link rel="icon" href="assets/img/favicon.ico"/>
+  <meta name="description" content="Custom and prebuilt gaming PCs in the UK. Built, thermally tested, and ready to ship. 12-month RTB warranty + lifetime remote support."/>
+
+  <!-- Canonical (GitHub Pages path) -->
+  <link rel="canonical" href="https://wizardothefool.github.io/bobs-builds/"/>
+
+  <!-- PWA -->
   <link rel="manifest" href="assets/manifest.webmanifest">
   <meta name="theme-color" content="#0d0f14">
 
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/styles.css"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/favicon.ico"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Bob’s Builds — Custom & Prebuilt Gaming PCs (UK)">
+  <meta property="og:description" content="Thermally tested, cable-managed PCs. Ready to ship, 12-month RTB warranty.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wizardothefool.github.io/bobs-builds/">
+  <meta property="og:image" content="https://wizardothefool.github.io/bobs-builds/assets/img/hero-pc.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Organization JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Bob's Builds",
+    "url":"https://wizardothefool.github.io/bobs-builds/",
+    "logo":"https://wizardothefool.github.io/bobs-builds/assets/img/logo.svg",
+    "sameAs":[
+      "https://www.facebook.com/YOURPAGE",
+      "https://www.ebay.co.uk/usr/YOURSHOP"
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="bar" role="note">🎄 Order by <strong>20 Dec</strong> for Christmas delivery (UK).</div>
@@ -26,7 +57,7 @@
       </div>
     </div>
     <picture class="hero-img">
-      <img src="assets/img/hero-pc.jpg" alt="Bob’s Builds gaming PC" loading="lazy"/>
+      <img src="assets/img/hero-pc.jpg" alt="Bob’s Builds gaming PC" loading="lazy" width="900" height="600"/>
     </picture>
   </section>
 
@@ -40,7 +71,14 @@
     </div>
   </section>
 
+  <noscript>
+    <p class="container tiny muted" style="padding-bottom:1rem">⚠️ For the best experience (navigation, shop, PWA), please enable JavaScript.</p>
+  </noscript>
+
   <div id="site-footer"></div>
+
+  <!-- Load includes, then main (PWA + extras) -->
   <script src="assets/include.js"></script>
+  <script src="assets/main.js"></script>
 </body>
 </html>
