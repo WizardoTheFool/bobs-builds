@@ -1,0 +1,55 @@
+{
+  "products": [
+    {
+      "slug": "good",
+      "name": "\"GOOD\" 1080p Gaming PC",
+      "price": 899.99,
+      "tier": "good",
+      "gpu": "RTX 3050",
+      "cpu": "Ryzen 5 5600 / i5-12400F",
+      "ram": "16 GB DDR4-3600",
+      "storage": "1 TB NVMe SSD",
+      "os": "Windows 11 Pro",
+      "badge": "GOOD • 1080p",
+      "status": "In stock",
+      "thumb": "assets/img/good-main.jpg",
+      "gallery": ["assets/img/good-main.jpg","assets/img/good-2.jpg","assets/img/good-3.jpg"],
+      "fb": "https://www.facebook.com/marketplace/ITEM-GOOD",
+      "ebay": "https://www.ebay.co.uk/itm/ITEM-GOOD"
+    },
+    {
+      "slug": "better",
+      "name": "\"BETTER\" 1440p Gaming PC",
+      "price": 1299.99,
+      "tier": "better",
+      "gpu": "RTX 4070 Super",
+      "cpu": "i5-14600KF / Ryzen 7",
+      "ram": "32 GB DDR4-3600",
+      "storage": "1 TB NVMe SSD",
+      "os": "Windows 11 Pro",
+      "badge": "BESTSELLER • 1440p",
+      "status": "In stock",
+      "thumb": "assets/img/better-main.jpg",
+      "gallery": ["assets/img/better-main.jpg","assets/img/better-2.jpg"],
+      "fb": "https://www.facebook.com/marketplace/ITEM-BETTER",
+      "ebay": "https://www.ebay.co.uk/itm/ITEM-BETTER"
+    },
+    {
+      "slug": "best",
+      "name": "\"BEST\" 1440p+/4K Gaming PC",
+      "price": 1999.99,
+      "tier": "best",
+      "gpu": "RTX 4080 Super",
+      "cpu": "i7 / Ryzen 7",
+      "ram": "32–64 GB DDR5",
+      "storage": "2 TB NVMe SSD",
+      "os": "Windows 11 Pro",
+      "badge": "PREMIUM • 1440p/4K",
+      "status": "Built to order",
+      "thumb": "assets/img/best-main.jpg",
+      "gallery": ["assets/img/best-main.jpg","assets/img/best-2.jpg"],
+      "fb": "https://www.facebook.com/marketplace/ITEM-BEST",
+      "ebay": "https://www.ebay.co.uk/itm/ITEM-BEST"
+    }
+  ]
+}
