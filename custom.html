@@ -4,83 +4,124 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Custom Builds — Bob’s Builds</title>
-  <meta name="description" content="Request a custom gaming PC or bespoke case design from Bob’s Builds. Submit your budget, games, and preferences — we’ll design the perfect PC for you.">
+  <meta name="description" content="Request a custom gaming PC or bespoke case design from Bob’s Builds. Submit your budget, games, and preferences — we’ll design the perfect PC for you."/>
+  <link rel="canonical" href="https://wizardothefool.github.io/bobs-builds/custom.html"/>
   <link rel="stylesheet" href="assets/styles.css"/>
-  <link rel="manifest" href="assets/manifest.webmanifest">
-  <meta name="theme-color" content="#0d0f14">
+  <link rel="manifest" href="assets/manifest.webmanifest"/>
+  <meta name="theme-color" content="#0d0f14"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Custom Builds — Bob’s Builds">
+  <meta property="og:description" content="Get a bespoke gaming PC design from Bob’s Builds. Tell us your budget, games, and aesthetic — we’ll build it to spec.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wizardothefool.github.io/bobs-builds/custom.html">
+  <meta property="og:image" content="https://placehold.co/1200x630/png?text=Custom+PC+Request">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header"></div>
 
-  <section class="container section">
-    <h2>Custom Builds & Custom Cases</h2>
-    <p>Tell us your budget, target games, and preferred look — we’ll reply with a tailored spec and build quote.</p>
+  <main id="main" tabindex="-1">
+    <section class="container section">
+      <h1>Custom Builds & Custom Cases</h1>
+      <p>Tell us your budget, target games, and preferred look — we’ll reply with a tailored spec and build quote.</p>
 
-    <form id="custom-form" class="form" aria-label="Custom build request">
-      <div class="grid two">
-        <label for="name">Full name
-          <input id="name" required name="name" placeholder="Jamie Smith" autocomplete="name"/>
+      <form id="custom-form" class="form" aria-label="Custom build request" novalidate>
+        <div class="grid two">
+          <label for="name">Full name
+            <input id="name" required name="name" placeholder="Jamie Smith" autocomplete="name"/>
+          </label>
+          <label for="email">Email
+            <input id="email" required type="email" name="email" placeholder="you@example.com" autocomplete="email"/>
+          </label>
+        </div>
+
+        <div class="grid two">
+          <label for="budget">Budget (GBP)
+            <input id="budget" required type="number" name="budget" placeholder="1200" min="400" step="50"/>
+          </label>
+          <label for="resolution">Target resolution
+            <select id="resolution" name="resolution">
+              <option>1080p</option>
+              <option selected>1440p</option>
+              <option>4K</option>
+            </select>
+          </label>
+        </div>
+
+        <label for="games">Games / Use case
+          <textarea id="games" name="games" rows="3" placeholder="E.g., Warzone, Cyberpunk, Blender rendering..."></textarea>
         </label>
-        <label for="email">Email
-          <input id="email" required type="email" name="email" placeholder="you@example.com" autocomplete="email"/>
+
+        <label for="aesthetic">Aesthetic & case ideas (optional)
+          <textarea id="aesthetic" name="aesthetic" rows="2" placeholder="RGB glass case, white theme, compact build..."></textarea>
         </label>
-      </div>
 
-      <div class="grid two">
-        <label for="budget">Budget (GBP)
-          <input id="budget" required type="number" name="budget" placeholder="1200" min="400" step="50"/>
+        <div class="grid two">
+          <label for="contact_pref">Preferred contact method
+            <select id="contact_pref" name="contact_pref">
+              <option>Email</option>
+              <option>Facebook</option>
+              <option>Phone</option>
+            </select>
+          </label>
+          <label for="handle">Facebook profile or phone (optional)
+            <input id="handle" name="handle" placeholder="facebook.com/yourname or 07..." autocomplete="off"/>
+          </label>
+        </div>
+
+        <!-- Honeypot anti-spam -->
+        <label class="tiny muted" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+          Leave this field blank:
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
         </label>
-        <label for="resolution">Target resolution
-          <select id="resolution" name="resolution">
-            <option>1080p</option>
-            <option selected>1440p</option>
-            <option>4K</option>
-          </select>
-        </label>
-      </div>
 
-      <label for="games">Games / Use case
-        <textarea id="games" name="games" rows="3" placeholder="E.g., Warzone, Cyberpunk, Blender rendering..."></textarea>
-      </label>
-
-      <label for="aesthetic">Aesthetic & case ideas (optional)
-        <textarea id="aesthetic" name="aesthetic" rows="2" placeholder="RGB glass case, white theme, compact build..."></textarea>
-      </label>
-
-      <div class="grid two">
-        <label for="contact_pref">Preferred contact method
-          <select id="contact_pref" name="contact_pref">
-            <option>Email</option>
-            <option>Facebook</option>
-            <option>Phone</option>
-          </select>
-        </label>
-        <label for="handle">Facebook profile or phone (optional)
-          <input id="handle" name="handle" placeholder="facebook.com/yourname or 07..." autocomplete="off"/>
-        </label>
-      </div>
-
-      <!-- Honeypot anti-spam -->
-      <label class="tiny muted" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
-        Leave this field blank:
-        <input type="text" name="website" tabindex="-1" autocomplete="off">
-      </label>
-
-      <button class="btn btn-primary" type="submit">Send Request</button>
-      <p class="tiny muted">By submitting, you agree to our <a href="privacy.html">privacy notice</a>.</p>
-    </form>
-  </section>
+        <button class="btn btn-primary" type="submit">Send Request</button>
+        <p id="form-msg" class="tiny muted"></p>
+        <p class="tiny muted">By submitting, you agree to our <a href="privacy.html">privacy notice</a>.</p>
+      </form>
+    </section>
+  </main>
 
   <div id="site-footer"></div>
   <script src="assets/include.js"></script>
+
   <script>
-    const form = document.getElementById('custom-form');
+  const form = document.getElementById('custom-form');
+  const msg  = document.getElementById('form-msg');
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = '';
 
-      const fd = new FormData(form);
-      if ((fd.get('website') || '').trim() !== '') return; // bot trap
+    const fd = new FormData(form);
+    if ((fd.get('website') || '').trim() !== '') return; // bot trap
 
-      // Required field check
-      if (!fd.get('name') || !fd.get('e
+    if (!fd.get('name') || !fd.get('email') || !fd.get('budget')) {
+      msg.textContent = '⚠️ Please fill in all required fields.';
+      return;
+    }
+
+    msg.textContent = '⏳ Sending...';
+
+    try {
+      // Replace this with your own Formspree endpoint (free signup)
+      const res = await fetch('https://formspree.io/f/your_form_id', {
+        method: 'POST',
+        body: fd,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        msg.textContent = '✅ Request sent! We’ll get back to you shortly.';
+      } else {
+        msg.textContent = '❌ Something went wrong. Please try again later.';
+      }
+    } catch (err) {
+      msg.textContent = '❌ Network error. Check your connection and try again.';
+    }
+  });
+  </script>
+</body>
+</html>
