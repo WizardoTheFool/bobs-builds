@@ -2,9 +2,17 @@
 const $  = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const money = (n) => '£' + Number(n || 0).toLocaleString('en-GB', {minimumFractionDigits:2});
+const months = 12;
+const monthly = (p) => '£' + (Number(p)/months).toFixed(2);
 
 const FAV_KEY = 'bb:favs';
 const RV_KEY  = 'bb:recent';
+const CMP_KEY = 'bb:compare';
+function getCompare(){ try { return JSON.parse(localStorage.getItem(CMP_KEY)) || []; } catch { return []; } }
+function setCompare(arr){ localStorage.setItem(CMP_KEY, JSON.stringify(arr)); updateCompareCount(); }
+function toggleCompare(slug){ const s = new Set(getCompare()); s.has(slug) ? s.delete(slug) : s.add(slug); setCompare([...s].slice(0,3)); }
+function updateCompareCount(){ const el = document.getElementById('compare-count'); if (el) el.textContent = getCompare().length; }
+
 
 // FAVES
 function getFavs(){ try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch { return []; } }
@@ -165,7 +173,9 @@ async function enhanceProduct(slug) {
   const gal    = document.getElementById('product-gallery');
 
   const res = await fetch('../assets/products.json');
-  const { products = [] } = await res.json();
+  const { products = [] 
+  try { injectProductActions(slug); } catch(e) {}
+} = await res.json();
   const p = products.find(x => x.slug === slug);
   if (!p) return;
 
@@ -225,3 +235,44 @@ if ('serviceWorker' in navigator) {
 // Kick off
 renderShop();
 updateFavCount();
+
+function wireCompareButtons(){
+  document.querySelectorAll('[data-compare]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const slug = btn.getAttribute('data-compare');
+      toggleCompare(slug);
+      btn.textContent = getCompare().includes(slug) ? 'Remove' : 'Compare';
+    });
+  });
+  updateCompareCount();
+}
+
+function injectProductActions(slug){
+  const host = document.querySelector('.product-actions') || document.querySelector('.product-meta') || document.querySelector('.product-cta');
+  if (!host) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'row';
+  wrap.innerHTML = `<button class="btn btn-ghost btn-sm" id="cmp-btn">${getCompare().includes(slug)?'Remove from':'Add to'} Compare</button>
+  <a class="btn btn-primary btn-sm" href="../compare.html">View Compare</a>`;
+  host.appendChild(wrap);
+  const btn = document.getElementById('cmp-btn');
+  if (btn){ btn.addEventListener('click', ()=>{ toggleCompare(slug); btn.textContent = getCompare().includes(slug)?'Remove from Compare':'Add to Compare'; }); }
+}
+
+function renderCompare(){
+  const slugs = getCompare();
+  const host = document.getElementById('compare-wrap');
+  if (!host) return;
+  if (!slugs.length){ host.innerHTML = `<div class="card"><p class="muted">Nothing to compare yet. Add up to three builds from the Shop.</p></div>`; return; }
+  fetch('assets/products.json').then(r=>r.json()).then(({products})=>{
+    const list = products.filter(p=>slugs.includes(p.slug));
+    if (!list.length){ host.innerHTML = `<div class="card"><p class="muted">Selected builds are unavailable.</p></div>`; return; }
+    const fields = [["CPU","cpu"],["GPU","gpu"],["RAM","ram"],["Storage","storage"],["Motherboard","mobo"],["PSU","psu"],["Case","case"],["Price","price"],["Sale","sale_price"]];
+    let html = `<div class="table"><div class="t-row head"><div class="t-cell">Spec</div>${list.map(p=>`<div class="t-cell"><strong>${p.name}</strong></div>`).join('')}</div>`;
+    for (const [label,key] of fields){
+      html += `<div class="t-row"><div class="t-cell muted">${label}</div>${list.map(p=>{ const val = p[key] ?? '—'; const out = (key==='price'||key==='sale_price') ? money(val) : val; return `<div class=\"t-cell\">${out}</div>`; }).join('')}</div>`;
+    }
+    html += `</div>`;
+    host.innerHTML = html;
+  });
+}

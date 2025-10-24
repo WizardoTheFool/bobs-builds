@@ -248,3 +248,7 @@ dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 .brand span{font-size:1.25rem;font-weight:700}
 .favs-link{display:flex;align-items:center;gap:.3rem}
 .favs-link #fav-count{font-weight:600;color:var(--accent)}
+
+/* Skip link (a11y) */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:var(--ink);color:#000;padding:.5rem .75rem;border-radius:.5rem;z-index:9999}

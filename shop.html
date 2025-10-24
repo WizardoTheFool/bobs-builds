@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Shop — Bob’s Builds</title>
   <meta name="description" content="Shop custom gaming PCs by Bob’s Builds — ready-to-ship 1080p, 1440p, and 4K rigs with Windows 11 Pro. Built and tested in the UK."/>
-  <link rel="stylesheet" href="assets/styles.css"/>
+  <link rel="preload" as="style" href="assets/styles.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
   <link rel="manifest" href="assets/manifest.webmanifest">
   <meta name="theme-color" content="#0d0f14">
 </head>
@@ -13,6 +14,19 @@
   <div id="site-header"></div>
 
   <section class="container section">
+    <div class="row" style="gap:.6rem;margin:.5rem 0 1rem;">
+      <select id="filter-res" class="input">
+        <option value="">All targets</option>
+        <option value="1080p">1080p</option>
+        <option value="1440p">1440p</option>
+        <option value="4K">4K</option>
+      </select>
+      <select id="sort-price" class="input">
+        <option value="">Sort by</option>
+        <option value="asc">Price: Low to High</option>
+        <option value="desc">Price: High to Low</option>
+      </select>
+    </div>
     <h2>Our PCs</h2>
 
     <div class="grid two" style="margin:.5rem 0 1rem">

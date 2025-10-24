@@ -6,6 +6,7 @@ const BASE = SCOPE_URL.pathname.endsWith('/') ? SCOPE_URL.pathname : (SCOPE_URL.
 
 // Core assets to precache
 const PRECACHE_ASSETS = [
+  'offline.html',
   '',                    // BASE itself (GH Pages serves index.html)
   'index.html',
   'assets/styles.css',
@@ -103,4 +104,21 @@ self.addEventListener('fetch', (event) => {
       return (await cache.match(BASE + 'index.html')) || Response.error();
     }
   })());
+});
+
+
+/* Offline navigate fallback */
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith((async () => {
+      try {
+        return await fetch(event.request);
+      } catch (err) {
+        const cache = await caches.open(VERSION);
+        const offline = await cache.match(BASE + 'offline.html');
+        if (offline) return offline;
+        throw err;
+      }
+    })());
+  }
 });

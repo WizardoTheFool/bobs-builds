@@ -44,9 +44,11 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="bar" role="note">🎄 Order by <strong>20 Dec</strong> for Christmas delivery (UK).</div>
 
   <div id="site-header"></div>
+  <main id="main">
 
   <section class="hero container">
     <div class="hero-copy">
@@ -58,7 +60,7 @@
       </div>
     </div>
     <picture class="hero-img">
-      <img src="https://placehold.co/1200x800/png?text=Bob%E2%80%99s+Builds+Hero" alt="Bob’s Builds gaming PC" loading="lazy"/>
+      <img src="https://placehold.co/1200x800/png?text=Bob%E2%80%99s+Builds+hero" alt="Bob’s Builds gaming PC" loading="lazy"/ fetchpriority="high">
     </picture>
   </section>
 
@@ -76,6 +78,7 @@
     <p class="container tiny muted" style="padding-bottom:1rem">⚠️ For the best experience (navigation, shop, PWA), please enable JavaScript.</p>
   </noscript>
 
+    </main>
   <div id="site-footer"></div>
 
   <!-- Load includes, then main (PWA + extras) -->
