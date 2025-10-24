@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>You’re offline — Bob’s Builds</title>
-<link rel="preload" as="style" href="assets/styles.css" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>You’re offline — Bob’s Builds</title>
+  <meta name="description" content="You’re offline. Browse previously visited pages or reconnect to access the full Bob’s Builds experience."/>
+  <link rel="canonical" href="https://wizardothefool.github.io/bobs-builds/offline.html"/>
+  <link rel="manifest" href="assets/manifest.webmanifest"/>
+  <meta name="theme-color" content="#0d0f14"/>
+
+  <!-- Styles -->
+  <link rel="preload" as="style" href="assets/styles.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="You’re offline — Bob’s Builds">
+  <meta property="og:description" content="You can still browse cached pages. We’ll reconnect automatically once you’re back online.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wizardothefool.github.io/bobs-builds/offline.html">
+  <meta property="og:image" content="https://placehold.co/1200x630/png?text=Offline+Mode">
 </head>
 <body>
-  <section class="container section">
-    <h2>Offline</h2>
-    <p class="muted">Looks like you’re offline. You can still browse pages you’ve opened before. We’ll reconnect automatically once you’re back online.</p>
-    <a class="btn btn-primary" href="index.html">Back to Home</a>
-  </section>
-</body></html>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main" tabindex="-1">
+    <section class="container section" style="text-align:center;max-width:600px;margin:auto;">
+      <h1>You’re offline</h1>
+      <p class="muted">Looks like your connection dropped. You can still browse pages you’ve opened before. We’ll reconnect automatically once you’re back online.</p>
+      <p><a class="btn btn-primary" href="index.html">Back to Home</a></p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="assets/include.js"></script>
+</body>
+</html>
