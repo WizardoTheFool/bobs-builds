@@ -1,4 +1,4 @@
-const VERSION = 'bb-v3';
+const VERSION = 'bb-v4'; // bump to clear old caches
 
 // Base path from scope (works on GitHub Pages and forks)
 const SCOPE_URL = new URL(self.registration.scope);
@@ -23,16 +23,21 @@ self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(VERSION);
     await cache.addAll(PRECACHE_ASSETS).catch(()=>{});
+
     // Precache product images (best effort)
     try {
       const res = await fetch(BASE + 'assets/products.json', { cache: 'no-cache' });
       const data = await res.json();
       const imgs = (data.products || []).flatMap(p => [p.thumb, ...(p.gallery || [])]);
-      await cache.addAll(imgs.map(src => src.startsWith('http') ? src : (BASE + src.replace(/^\//,''))));
+      const toCache = imgs
+        .filter(Boolean)
+        .map(src => src.startsWith('http') ? src : (BASE + src.replace(/^\//,'')));
+      await cache.addAll(toCache).catch(()=>{});
     } catch {}
+
     // Navigation preload for faster HTML
     if (self.registration.navigationPreload) {
-      await self.registration.navigationPreload.enable().catch(()=>{});
+      try { await self.registration.navigationPreload.enable(); } catch {}
     }
     self.skipWaiting();
   })());
@@ -51,26 +56,22 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
-// ----- Fetch strategy --------------------------------------------------------
+// ----- Single Fetch strategy -------------------------------------------------
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-
-  // Only same-origin
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return;
 
-  // Only GET is cacheable
-  if (req.method !== 'GET') return;
+  // Only same-origin and GET are handled
+  if (url.origin !== location.origin || req.method !== 'GET') return;
 
-  // HTML: network-first (with preload), fallback to cache then index.html
   const isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+
   if (isHTML) {
+    // HTML: network-first (with navigation preload), fallback to cache, then offline page
     event.respondWith((async () => {
       try {
-        // Navigation preload if available
         const preload = await event.preloadResponse;
         const netRes = preload || await fetch(req);
-        // only cache good responses
         if (netRes && netRes.ok) {
           const copy = netRes.clone();
           caches.open(VERSION).then(c => c.put(req, copy));
@@ -79,6 +80,7 @@ self.addEventListener('fetch', (event) => {
       } catch {
         const cache = await caches.open(VERSION);
         return (await cache.match(req)) ||
+               (await cache.match(BASE + 'offline.html')) ||
                (await cache.match(BASE + 'index.html')) ||
                Response.error();
       }
@@ -86,7 +88,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Assets (CSS/JS/images/json): cache-first, then network with background update
+  // Non-HTML assets: cache-first, then network; background update when possible
   event.respondWith((async () => {
     const cache = await caches.open(VERSION);
     const cached = await cache.match(req);
@@ -94,31 +96,15 @@ self.addEventListener('fetch', (event) => {
 
     try {
       const res = await fetch(req);
-      // Cache successful, same-origin responses
       if (res && res.ok && res.type !== 'opaque') {
         cache.put(req, res.clone());
       }
       return res;
     } catch {
-      // As a last resort, try index.html for same-origin navigations to subpaths
-      return (await cache.match(BASE + 'index.html')) || Response.error();
+      // As a last resort for assets, try serving the shell
+      return (await cache.match(BASE + 'offline.html')) ||
+             (await cache.match(BASE + 'index.html')) ||
+             Response.error();
     }
   })());
-});
-
-
-/* Offline navigate fallback */
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        return await fetch(event.request);
-      } catch (err) {
-        const cache = await caches.open(VERSION);
-        const offline = await cache.match(BASE + 'offline.html');
-        if (offline) return offline;
-        throw err;
-      }
-    })());
-  }
 });
