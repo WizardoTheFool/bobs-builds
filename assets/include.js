@@ -1,4 +1,4 @@
-// inject header/footer, handle mobile nav, highlight active link
+// inject header/footer, handle mobile nav, highlight active link, a11y helpers
 (async () => {
   const docPath = location.pathname;
   const inProducts = /\/products\//.test(docPath);
@@ -7,6 +7,7 @@
   const headerSpot = document.getElementById('site-header');
   const footerSpot = document.getElementById('site-footer');
 
+  // Inject header/footer partials
   if (headerSpot) {
     const h = await fetch(base + 'partials/header.html');
     headerSpot.innerHTML = await h.text();
@@ -16,20 +17,48 @@
     footerSpot.innerHTML = await f.text();
   }
 
-  // after DOM paints injected header/footer
+  // After DOM paints injected header/footer
   requestAnimationFrame(() => {
-    // mobile nav
+    // ---- Mobile nav toggle (with accessibility) ----
     const toggle = document.querySelector('.nav-toggle');
-    const links = document.getElementById('nav-links');
+    const links  = document.getElementById('nav-links');
+
+    function setNav(open) {
+      if (!links || !toggle) return;
+      links.style.display = open ? 'flex' : 'none';
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
     if (toggle && links) {
+      // Default closed on small screens
+      setNav(false);
+
       toggle.addEventListener('click', () => {
-        const open = links.style.display === 'flex';
-        links.style.display = open ? 'none' : 'flex';
-        toggle.setAttribute('aria-expanded', String(!open));
+        const isOpen = links.style.display === 'flex';
+        setNav(!isOpen);
+        if (!isOpen) {
+          // focus first link when opening
+          const first = links.querySelector('a,button');
+          if (first) first.focus();
+        } else {
+          // return focus to the toggle when closing
+          toggle.focus();
+        }
+      });
+
+      // Close when a nav link is clicked (useful on mobile)
+      links.addEventListener('click', (e) => {
+        const t = e.target;
+        if (t && t.closest('a')) setNav(false);
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setNav(false);
       });
     }
 
-    // active link
+    // ---- Active link highlight ----
     const file = docPath.split('/').pop() || 'index.html';
     document.querySelectorAll('[data-nav]').forEach(a => {
       const href = a.getAttribute('href');
@@ -37,8 +66,22 @@
       if (shouldActivate) a.classList.add('active');
     });
 
-    // footer year
+    // ---- Footer dynamic year ----
     const y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
+
+    // ---- Skip to content: move keyboard focus into <main> ----
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.matches('.skip-link')) {
+        const main = document.getElementById('main');
+        if (main) {
+          // ensure focusable then focus
+          if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+          main.focus({ preventScroll: false });
+        }
+        // let the browser also jump via the hash
+      }
+    });
   });
 })();
