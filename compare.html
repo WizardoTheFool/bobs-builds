@@ -8,7 +8,7 @@
 
   <link rel="canonical" href="https://wizardothefool.github.io/bobs-builds/compare.html"/>
 
-  <!-- Styles (standard link for reliability on Pages/PWA) -->
+  <!-- Styles -->
   <link rel="stylesheet" href="assets/styles.css"/>
 
   <!-- PWA -->
@@ -32,13 +32,24 @@
       <h1>Compare Builds</h1>
       <div id="compare-wrap" class="grid"></div>
       <p class="muted tiny">Tip: Add builds to compare from the Shop or product pages.</p>
+      <noscript><p class="tiny muted">Enable JavaScript to view the compare table.</p></noscript>
     </section>
   </main>
 
   <div id="site-footer"></div>
 
-  <script src="assets/include.js"></script>
-  <script src="assets/main.js"></script>
-  <script>renderCompare();</script>
+  <!-- Defer scripts to avoid race conditions -->
+  <script src="assets/include.js" defer></script>
+  <script src="assets/main.js" defer></script>
+  <script>
+    // Robust init: wait for main.js to load and define renderCompare()
+    (function waitForRenderCompare(retries = 40) {
+      if (typeof renderCompare === 'function') {
+        try { renderCompare(); } catch (e) {}
+        return;
+      }
+      if (retries > 0) setTimeout(() => waitForRenderCompare(retries - 1), 100);
+    })();
+  </script>
 </body>
 </html>
