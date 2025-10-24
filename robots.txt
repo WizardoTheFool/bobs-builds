@@ -3,9 +3,11 @@
 User-agent: *
 Allow: /
 
-# Block some unnecessary directories (optional)
+# Optional: block folders that don’t need to be indexed
 Disallow: /assets/
 Disallow: /partials/
+Disallow: /sw.js
+Disallow: /manifest.webmanifest
 
-# Sitemap
+# Sitemap (always include full absolute URL)
 Sitemap: https://wizardothefool.github.io/bobs-builds/sitemap.xml
