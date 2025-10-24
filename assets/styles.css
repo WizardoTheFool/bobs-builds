@@ -1,10 +1,18 @@
 /* =========================================================
-   Bob's Builds — global styles (advanced)
+   Bob's Builds — global styles (advanced)  (palette-applied)
    ========================================================= */
 :root{
   /* colours */
-  --bg:#0d0f14; --card:#12161f; --ink:#e9eefc; --muted:#9aa3b2;
-  --accent:#3aa6ff; --accent-2:#8b5cf6; --ring:#3aa6ff50;
+  --bg: #191032;            /* main background (colour 1) */
+  --bg-low: #101643;        /* bars / low accents (colour 2) */
+  --card: #101643;          /* panels/cards use low accent */
+  --ink: #e9ecf8;
+  --muted: #b7bdd7;
+  --accent: #33c7fd;        /* gradient start (colour 3) */
+  --accent-2: #6d3afc;      /* gradient end (colour 4) */
+  --ring: #33c7fd66;
+  --border: #2a2850;
+  --grad: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
 
   /* layout + type */
   --maxw: 1100px;
@@ -46,34 +54,34 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
    Top bars / header
    ========================================================= */
 .bar{
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  color:#fff; text-align:center; font-weight:500; font-size:.9rem;
-  padding:.4rem 1rem
+  background: var(--bg-low);
+  color: var(--ink); text-align:center; font-weight:500; font-size:.9rem;
+  padding:.4rem 1rem; border-bottom:1px solid var(--border);
 }
-.bar strong{color:#fff}
+.bar strong{color:var(--ink)}
 
 .header{
   position: sticky; top:0; z-index:999; background:var(--bg);
   display:flex; align-items:center; justify-content:space-between;
-  padding:1rem 0; gap:1rem; border-bottom:1px solid #0f1522aa
+  padding:1rem 0; gap:1rem; border-bottom:1px solid var(--border);
 }
 .brand{display:flex;align-items:center;gap:.6rem;color:var(--ink);font-weight:700;font-size:clamp(1.05rem,2vw,1.2rem)}
 .logo{width:34px;height:34px}
 
 .nav-toggle{
-  display:none;background:transparent;border:1px solid #253047;color:var(--ink);
+  display:none;background:transparent;border:1px solid var(--border);color:var(--ink);
   padding:.4rem .6rem;border-radius:.5rem;font-size:1.2rem;line-height:1;cursor:pointer
 }
 .nav-links{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
 .nav-links li{list-style:none}
 .nav-links a{padding:.4rem .6rem;border-radius:.5rem}
-.nav-links a:hover{background:#1a2333}
-.nav-links a.active{background:#1a2333;border-bottom:2px solid var(--accent)}
+.nav-links a:hover{background:#141a2f}
+.nav-links a.active{background:#141a2f;border-bottom:2px solid var(--accent)}
 
 @media (max-width: 640px){
   .nav-toggle{display:inline-block}
   .nav-links{
-    display:none;flex-direction:column;background:#0f1420;border:1px solid #1c2741;
+    display:none;flex-direction:column;background:#141a2f;border:1px solid var(--border);
     position:absolute;right:4%;top:72px;padding:.6rem;border-radius:.7rem;min-width:220px
   }
 }
@@ -82,7 +90,12 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
    Hero
    ========================================================= */
 .hero{
-  display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:1.5rem 0
+  display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:1.5rem 0;
+  /* subtle glow from high-accent gradient */
+  background:
+    radial-gradient(1200px 600px at 70% -10%, rgba(109,58,252,.14) 0%, transparent 60%),
+    radial-gradient(800px 400px at 10% 0%,  rgba(51,199,253,.16) 0%, transparent 60%);
+  border-bottom:1px solid var(--border);
 }
 .hero-copy h1{font-size:clamp(1.6rem,3.2vw,2.4rem);line-height:1.2;margin:0 0 .6rem}
 .cta-row{display:flex;gap:.8rem;flex-wrap:wrap}
@@ -95,14 +108,14 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
    ========================================================= */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
-  padding:.7rem 1rem;border-radius:.7rem;border:1px solid #2a3752;
-  color:var(--ink);background:#192237;font-weight:600;cursor:pointer;
+  padding:.7rem 1rem;border-radius:.7rem;border:1px solid var(--border);
+  color:var(--ink);background:#141a2f;font-weight:600;cursor:pointer;
   transition:transform var(--dur) ease, box-shadow var(--dur) ease, outline var(--dur) ease
 }
 .btn:hover{outline:2px solid var(--ring);text-decoration:none}
 .btn:active{transform:translateY(1px)}
-.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0}
-.btn-outline{background:transparent;border:1px solid #2a3752}
+.btn-primary{background:var(--grad);border:0;color:#0b0c15}
+.btn-outline{background:transparent;border:1px solid var(--border)}
 .btn-ghost{background:transparent;border:0}
 
 /* =========================================================
@@ -113,27 +126,27 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 .cards{grid-template-columns:repeat(3,1fr);margin-top:1rem}
 
 .card{
-  position:relative;background:var(--card);border:1px solid #1e283d;border-radius:var(--radius);
+  position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
   padding:1rem;display:flex;flex-direction:column;gap:.8rem;box-shadow:var(--shadow-inset)
 }
 .card .badge{
-  display:inline-block;background:#111827;border:1px solid #2a3752;border-radius:999px;
+  display:inline-block;background:#0f1330;border:1px solid var(--border);border-radius:999px;
   padding:.2rem .6rem;color:var(--muted);font-size:.8rem
 }
 .card h3{margin:.2rem 0}
 .card .specs{margin:.4rem 0 0 1rem}
 .card .price{font-size:1.4rem;margin:.4rem 0}
 .card .btn-row{display:flex;gap:.5rem;flex-wrap:wrap}
-.card.highlight{border-color:#3aa6ff40;box-shadow:0 0 0 1px #3aa6ff30 inset}
+.card.highlight{border-color:#33c7fd40;box-shadow:0 0 0 1px #33c7fd30 inset}
 
 /* product thumbs look crisp and consistent */
 .thumb{
-  border-radius:.6rem;border:1px solid #1e283d;
+  border-radius:.6rem;border:1px solid var(--border);
   aspect-ratio: 16/9; object-fit: cover; width:100%;
 }
 
 .features{grid-template-columns:repeat(4,1fr)}
-.feature{background:#0f1420;border:1px solid #1c2741;border-radius:var(--radius);padding:1rem}
+.feature{background:#141a2f;border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
 
 @media (max-width: 960px){
   .cards{grid-template-columns:1fr 1fr}
@@ -147,10 +160,10 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
    Forms
    ========================================================= */
 .form{
-  display:grid;gap:1rem;background:#0f1420;border:1px solid #1c2741;border-radius:var(--radius);padding:1rem
+  display:grid;gap:1rem;background:#141a2f;border:1px solid var(--border);border-radius:var(--radius);padding:1rem
 }
 .form input,.form select,.form textarea{
-  width:100%;padding:.7rem;border-radius:.6rem;border:1px solid #253047;background:#0b1220;color:var(--ink);
+  width:100%;padding:.7rem;border-radius:.6rem;border:1px solid var(--border);background:#10143a;color:var(--ink);
   transition:border-color var(--dur) ease, box-shadow var(--dur) ease
 }
 .form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--ring);border-color:transparent}
@@ -161,7 +174,7 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 /* toast utility (used on custom form) */
 .toast{
   position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:#192237;color:#e9eefc;padding:.8rem 1.2rem;border-radius:.6rem;border:1px solid #2a3752;
+  background:#141a2f;color:#e9ecf8;padding:.8rem 1.2rem;border-radius:.6rem;border:1px solid var(--border);
   z-index:1000;font-size:.9rem;opacity:0;transition:opacity .4s ease
 }
 .toast.show{opacity:1}
@@ -169,7 +182,7 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 /* =========================================================
    Footer
    ========================================================= */
-.footer{border-top:1px solid #1b2331;margin-top:3rem}
+.footer{border-top:1px solid var(--border);margin-top:3rem}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 0;gap:1rem;flex-wrap:wrap}
 .footer a{color:var(--muted)}
 .footer-links{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
@@ -180,12 +193,12 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 /* =========================================================
    Lightbox
    ========================================================= */
-dialog.lb{border:0;border-radius:var(--radius);padding:0;background:#0b1220}
+dialog.lb{border:0;border-radius:var(--radius);padding:0;background:#10143a}
 dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 .lb-wrap{position:relative;padding:1rem}
 .lb-wrap > img{max-width:90vw;max-height:70vh;margin:auto;display:block;border-radius:.6rem}
 .lb-row{display:flex;gap:.5rem;margin-top:.5rem;overflow:auto}
-.lb-row img{height:70px;cursor:pointer;border-radius:.5rem;border:1px solid #1e283d;transition:transform var(--dur) ease}
+.lb-row img{height:70px;cursor:pointer;border-radius:.5rem;border:1px solid var(--border);transition:transform var(--dur) ease}
 .lb-row img:hover{transform:scale(1.03)}
 .lb-x{position:absolute;right:.5rem;top:.5rem}
 
@@ -199,7 +212,7 @@ dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 .danger{color:#ef4444}
 
 /* sale pricing */
-.price .was{color:#9aa3b2;text-decoration:line-through;margin-right:.4rem}
+.price .was{color:var(--muted);text-decoration:line-through;margin-right:.4rem}
 .price .now{font-weight:700}
 .badge .sale{color:#f59e0b}
 
@@ -211,23 +224,23 @@ dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 .fav-btn{
   position:absolute;top:.6rem;right:.6rem;
   background:rgba(0,0,0,.25);backdrop-filter:saturate(120%) blur(2px);
-  border:1px solid #2a3752;border-radius:.6rem;padding:.2rem .45rem;
+  border:1px solid var(--border);border-radius:.6rem;padding:.2rem .45rem;
   font-size:1.05rem;cursor:pointer;line-height:1;transition:filter var(--dur) ease, outline var(--dur) ease
 }
 .fav-btn:hover{outline:2px solid var(--ring)}
 .fav-btn.active{filter:drop-shadow(0 0 6px rgba(255,80,100,.6))}
 
 /* skeleton cards */
-.skeleton{min-height:260px;position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid #1e283d;background:#121826}
+.skeleton{min-height:260px;position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border);background:#15183a}
 .skeleton::before{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,#101521 25%,#1a2130 37%,#101521 63%);
+  background:linear-gradient(90deg,#141a2f 25%,#1a2042 37%,#141a2f 63%);
   animation:shimmer 1.2s infinite
 }
 @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
 
 /* recent pills */
-.pill{display:inline-block;padding:.3rem .6rem;border:1px solid #2a3752;border-radius:999px;margin:.2rem .2rem 0 0}
+.pill{display:inline-block;padding:.3rem .6rem;border:1px solid var(--border);border-radius:999px;margin:.2rem .2rem 0 0}
 
 /* =========================================================
    Extras
