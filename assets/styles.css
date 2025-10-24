@@ -25,8 +25,12 @@
 }
 
 @media (prefers-reduced-motion: reduce){
-  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;
-    transition-duration:0.001ms !important;scroll-behavior:auto !important}
+  *{
+    animation-duration:0.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.001ms !important;
+    scroll-behavior:auto !important;
+  }
 }
 
 *{box-sizing:border-box}
@@ -49,6 +53,9 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
   position:absolute!important;left:-9999px!important;top:auto!important;width:1px!important;
   height:1px!important;overflow:hidden!important;white-space:nowrap!important
 }
+
+/* simple horizontal row utility */
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
 
 /* =========================================================
    Top bars / header
@@ -118,6 +125,16 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 .btn-outline{background:transparent;border:1px solid var(--border)}
 .btn-ghost{background:transparent;border:0}
 
+/* sizes */
+.btn-sm{padding:.55rem .8rem;font-size:.95rem}
+.btn-xs{padding:.35rem .6rem;font-size:.85rem}
+
+/* small badge count */
+.pill{
+  display:inline-block;padding:.2rem .5rem;border:1px solid var(--border);
+  border-radius:999px;font-size:.75rem
+}
+
 /* =========================================================
    Grid / cards
    ========================================================= */
@@ -157,7 +174,7 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 }
 
 /* =========================================================
-   Forms
+   Forms & controls
    ========================================================= */
 .form{
   display:grid;gap:1rem;background:#141a2f;border:1px solid var(--border);border-radius:var(--radius);padding:1rem
@@ -167,6 +184,14 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
   transition:border-color var(--dur) ease, box-shadow var(--dur) ease
 }
 .form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--ring);border-color:transparent}
+
+/* Standalone control styling (for .input used in shop filters) */
+.input, select.input, input.input{
+  width:100%;padding:.6rem .7rem;border-radius:.6rem;border:1px solid var(--border);
+  background:#10143a;color:var(--ink);transition:border-color var(--dur) ease, box-shadow var(--dur) ease
+}
+.input:focus{outline:2px solid var(--ring);border-color:transparent}
+
 .list{line-height:1.9}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media (max-width: 960px){ .contact-grid{grid-template-columns:1fr} }
@@ -241,6 +266,24 @@ dialog.lb::backdrop{background:rgba(0,0,0,.6)}
 
 /* recent pills */
 .pill{display:inline-block;padding:.3rem .6rem;border:1px solid var(--border);border-radius:999px;margin:.2rem .2rem 0 0}
+
+/* =========================================================
+   Compare table
+   ========================================================= */
+.table{
+  width:100%;background:#141a2f;border:1px solid var(--border);border-radius:var(--radius);
+  overflow:auto
+}
+.t-row{
+  display:grid;gap:.5rem;padding:.7rem 1rem;border-top:1px solid var(--border);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+.t-row.head{
+  position:sticky;top:0;background:#121838;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);
+  border-top:none;font-weight:700
+}
+.t-cell{padding:.2rem 0}
+.t-cell.muted{color:var(--muted)}
 
 /* =========================================================
    Extras
