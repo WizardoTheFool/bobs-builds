@@ -1,4 +1,4 @@
-const VERSION = 'bb-v4'; // bump to clear old caches
+const VERSION = 'bb-v5'; // bump to clear old caches
 
 // Base path from scope (works on GitHub Pages and forks)
 const SCOPE_URL = new URL(self.registration.scope);
@@ -9,6 +9,7 @@ const PRECACHE_ASSETS = [
   'offline.html',
   '',                    // BASE itself (GH Pages serves index.html)
   'index.html',
+  'compare.html',        // ensure compare page is cached too
   'assets/styles.css',
   'assets/include.js',
   'assets/main.js',
