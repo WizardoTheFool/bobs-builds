@@ -1,23 +1,31 @@
 <!-- Optional promo bar -->
-<div class="bar">
+<div class="bar" role="note">
   🎄 <strong>Christmas Deals:</strong> Save up to <strong>10%</strong> on selected gaming PCs!
 </div>
 
-<header class="container header" role="banner">
-  <a href="index.html" class="brand" aria-label="Bob's Builds Home">
-    <img src="assets/img/logo.svg" alt="Bob's Builds Logo" class="logo"/>
-    <span>Bob’s Builds</span>
-  </a>
+<header class="header" role="banner">
+  <div class="container header-inner">
+    <!-- Brand / Logo -->
+    <a href="index.html" class="brand" aria-label="Bob’s Builds Home">
+      <img src="assets/img/logo.svg" alt="Bob’s Builds logo" class="logo">
+      <span>Bob’s Builds</span>
+    </a>
 
-  <nav aria-label="Primary navigation">
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">☰</button>
-    <ul id="nav-links" class="nav-links">
-      <li><a data-nav href="index.html">Home</a></li>
-      <li><a data-nav href="shop.html">Shop</a></li>
-      <li><a data-nav href="custom.html">Custom Builds</a></li>
-      <li><a data-nav href="warranty.html">Warranty</a></li>
-      <li><a data-nav href="contact.html">Contact</a></li>
-      <li><a href="shop.html#favs" class="favs-link" title="Your Favourites">❤️ <span id="fav-count">0</span></a></li>
-    </ul>
-  </nav>
+    <!-- Navigation -->
+    <nav class="nav" aria-label="Primary navigation">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">☰</button>
+      <ul id="nav-links" class="nav-links">
+        <li><a data-nav href="index.html" class="active">Home</a></li>
+        <li><a data-nav href="shop.html">Shop</a></li>
+        <li><a data-nav href="custom.html">Custom Builds</a></li>
+        <li><a data-nav href="warranty.html">Warranty</a></li>
+        <li><a data-nav href="contact.html">Contact</a></li>
+        <li>
+          <a href="shop.html#favs" class="favs-link" title="Your Favourites">
+            ❤️ <span id="fav-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
