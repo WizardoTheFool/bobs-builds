@@ -5,70 +5,93 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Shop — Bob’s Builds</title>
   <meta name="description" content="Shop custom gaming PCs by Bob’s Builds — ready-to-ship 1080p, 1440p, and 4K rigs with Windows 11 Pro. Built and tested in the UK."/>
-  <link rel="preload" as="style" href="assets/styles.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://wizardothefool.github.io/bobs-builds/shop.html"/>
+
+  <!-- Styles (standard link for reliability on Pages/PWA) -->
+  <link rel="stylesheet" href="assets/styles.css"/>
+
+  <!-- PWA -->
   <link rel="manifest" href="assets/manifest.webmanifest">
   <meta name="theme-color" content="#0d0f14">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Shop — Bob’s Builds">
+  <meta property="og:description" content="Ready-to-ship gaming PCs: 1080p, 1440p, and 4K builds. Thermally tested, cable-managed.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wizardothefool.github.io/bobs-builds/shop.html">
+  <meta property="og:image" content="https://placehold.co/1200x630/png?text=Bob%E2%80%99s+Builds">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shop — Bob’s Builds">
+  <meta name="twitter:description" content="Ready-to-ship gaming PCs: 1080p, 1440p, and 4K builds.">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header"></div>
 
-  <section class="container section">
-    <div class="row" style="gap:.6rem;margin:.5rem 0 1rem;">
-      <select id="filter-res" class="input">
-        <option value="">All targets</option>
-        <option value="1080p">1080p</option>
-        <option value="1440p">1440p</option>
-        <option value="4K">4K</option>
-      </select>
-      <select id="sort-price" class="input">
-        <option value="">Sort by</option>
-        <option value="asc">Price: Low to High</option>
-        <option value="desc">Price: High to Low</option>
-      </select>
-    </div>
-    <h2>Our PCs</h2>
-
-    <div class="grid two" style="margin:.5rem 0 1rem">
-      <label>Search
-        <input id="q" placeholder="RTX 4070, 1TB, Ryzen…" aria-label="Search products">
-      </label>
-      <label>Tier
-        <select id="tier" aria-label="Filter by tier">
-          <option value="all">All</option>
-          <option value="good">Good</option>
-          <option value="better">Better</option>
-          <option value="best">Best</option>
+  <main id="main" tabindex="-1">
+    <section class="container section">
+      <div class="row" style="gap:.6rem;margin:.5rem 0 1rem;">
+        <label class="visually-hidden" for="filter-res">Filter by target resolution</label>
+        <select id="filter-res" class="input" aria-label="Filter by target resolution">
+          <option value="">All targets</option>
+          <option value="1080p">1080p</option>
+          <option value="1440p">1440p</option>
+          <option value="4K">4K</option>
         </select>
-      </label>
-    </div>
 
-    <div class="grid two" style="margin:-.5rem 0 1rem">
-      <label>Sort
-        <select id="sort" aria-label="Sort products">
-          <option value="featured">Featured</option>
-          <option value="price_asc">Price: Low → High</option>
-          <option value="price_desc">Price: High → Low</option>
-          <option value="name_asc">Name A → Z</option>
-          <option value="rating_desc">Rating</option>
+        <label class="visually-hidden" for="sort-price">Sort by price</label>
+        <select id="sort-price" class="input" aria-label="Sort by price">
+          <option value="">Sort by</option>
+          <option value="asc">Price: Low to High</option>
+          <option value="desc">Price: High to Low</option>
         </select>
-      </label>
-      <label style="display:flex;align-items:center;gap:.5rem;margin-top:1.6rem">
-        <input type="checkbox" id="onlyFavs"> Show favourites only
-      </label>
-    </div>
+      </div>
 
-    <div id="shop-grid" class="grid cards" aria-live="polite">
-      <!-- Skeleton loaders (shown before JS loads) -->
-      <div class="skeleton card"></div>
-      <div class="skeleton card"></div>
-      <div class="skeleton card"></div>
-    </div>
+      <h2>Our PCs</h2>
 
-    <noscript>
-      <p class="muted">⚠️ JavaScript is disabled — please enable it to browse our live PC listings.</p>
-    </noscript>
-  </section>
+      <div class="grid two" style="margin:.5rem 0 1rem">
+        <label for="q">Search
+          <input id="q" placeholder="RTX 4070, 1TB, Ryzen…" aria-label="Search products">
+        </label>
+        <label for="tier">Tier
+          <select id="tier" aria-label="Filter by tier">
+            <option value="all">All</option>
+            <option value="good">Good</option>
+            <option value="better">Better</option>
+            <option value="best">Best</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="grid two" style="margin:-.5rem 0 1rem">
+        <label for="sort">Sort
+          <select id="sort" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="price_asc">Price: Low → High</option>
+            <option value="price_desc">Price: High → Low</option>
+            <option value="name_asc">Name A → Z</option>
+            <option value="rating_desc">Rating</option>
+          </select>
+        </label>
+        <label style="display:flex;align-items:center;gap:.5rem;margin-top:1.6rem" for="onlyFavs">
+          <input type="checkbox" id="onlyFavs"> Show favourites only
+        </label>
+      </div>
+
+      <div id="shop-grid" class="grid cards" aria-live="polite">
+        <!-- Skeleton loaders (shown before JS loads) -->
+        <div class="skeleton card"></div>
+        <div class="skeleton card"></div>
+        <div class="skeleton card"></div>
+      </div>
+
+      <noscript>
+        <p class="muted">⚠️ JavaScript is disabled — please enable it to browse our live PC listings.</p>
+      </noscript>
+    </section>
+  </main>
 
   <div id="site-footer"></div>
 
