@@ -28,14 +28,14 @@
 
       <div class="contact-grid">
         <div>
-          <p><strong>Email:</strong> <a href="mailto:bobsbuildsuk@gmail.com">bobsbuildsuk@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:support@bobsbuilds.org">support@bobsbuilds.org</a></p>
           <p><strong>Facebook:</strong> <a href="https://www.facebook.com/YOURPAGE" target="_blank" rel="noopener noreferrer">facebook.com/YOURPAGE</a></p>
           <p><strong>eBay:</strong> <a href="https://www.ebay.co.uk/usr/YOURSHOP" target="_blank" rel="noopener noreferrer">ebay.co.uk/usr/YOURSHOP</a></p>
           <p class="tiny muted">We usually reply within one working day.</p>
         </div>
 
         <!-- Mailto-based form -->
-        <form id="contact-form" class="form" aria-label="Contact form" action="mailto:bobsbuildsuk@gmail.com" method="post" novalidate>
+        <form id="contact-form" class="form" aria-label="Contact form" action="mailto:support@bobsbuilds.org" method="post" novalidate>
           <label for="from">Your email
             <input id="from" name="from" type="email" placeholder="you@example.com" autocomplete="email" required/>
           </label>
@@ -56,7 +56,7 @@
 
           <noscript>
             <p class="tiny muted">JavaScript is off. Click to email us directly:
-              <a class="btn" href="mailto:bobsbuildsuk@gmail.com?subject=Website%20enquiry&body=Please%20include%20your%20contact%20details.">Open email</a>
+              <a class="btn" href="mailto:support@bobsbuilds.org?subject=Website%20enquiry&body=Please%20include%20your%20contact%20details.">Open email</a>
             </p>
           </noscript>
         </form>
@@ -98,7 +98,7 @@
       const body = encodeURIComponent(lines.join('\\n'));
 
       // open mail client
-      window.location.href = `mailto:bobsbuildsuk@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:support@bobsbuilds.org?subject=${subject}&body=${body}`;
       msg.textContent = '✅ Opening your email app…';
     });
   </script>
