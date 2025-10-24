@@ -17,8 +17,8 @@
   <!-- Styles -->
   <link rel="stylesheet" href="assets/styles.css"/>
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/img/favicon.ico"/>
+  <!-- Favicon (use existing logo as a fallback favicon) -->
+  <link rel="icon" href="assets/img/logo.png" type="image/png"/>
 
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Bob’s Builds — Custom & Prebuilt Gaming PCs (UK)">
@@ -27,6 +27,8 @@
   <meta property="og:url" content="https://wizardothefool.github.io/bobs-builds/">
   <meta property="og:image" content="https://placehold.co/1200x630/png?text=Bob%E2%80%99s+Builds">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bob’s Builds — Custom & Prebuilt Gaming PCs (UK)">
+  <meta name="twitter:description" content="Thermally tested, cable-managed PCs. Ready to ship, 12-month RTB warranty.">
 
   <!-- Organization JSON-LD -->
   <script type="application/ld+json">
@@ -48,37 +50,39 @@
   <div class="bar" role="note">🎄 Order by <strong>20 Dec</strong> for Christmas delivery (UK).</div>
 
   <div id="site-header"></div>
-  <main id="main">
-
-  <section class="hero container">
-    <div class="hero-copy">
-      <h1>Custom & Prebuilt Gaming PCs — Built Right and On Time</h1>
-      <p>Every PC is cable-managed and thermally tested. 12-month RTB warranty + lifetime remote support.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="shop.html">Shop Ready-to-Ship PCs</a>
-        <a class="btn btn-ghost" href="custom.html">Request a Custom Build</a>
+  <main id="main" tabindex="-1">
+    <section class="hero container">
+      <div class="hero-copy">
+        <h1>Custom & Prebuilt Gaming PCs — Built Right and On Time</h1>
+        <p>Every PC is cable-managed and thermally tested. 12-month RTB warranty + lifetime remote support.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="shop.html">Shop Ready-to-Ship PCs</a>
+          <a class="btn btn-ghost" href="custom.html">Request a Custom Build</a>
+        </div>
       </div>
-    </div>
-    <picture class="hero-img">
-      <img src="https://placehold.co/1200x800/png?text=Bob%E2%80%99s+Builds+hero" alt="Bob’s Builds gaming PC" loading="lazy"/ fetchpriority="high">
-    </picture>
-  </section>
+      <picture class="hero-img">
+        <img src="https://placehold.co/1200x800/png?text=Bob%E2%80%99s+Builds+hero"
+             alt="Bob’s Builds gaming PC"
+             fetchpriority="high"
+             decoding="async">
+      </picture>
+    </section>
 
-  <section class="container section" id="why">
-    <h2>Why Choose Bob’s Builds</h2>
-    <div class="grid features">
-      <div class="feature"><h3>Thermally Tested</h3><p>30-minute OCCT + 3DMark. Proof on the desktop.</p></div>
-      <div class="feature"><h3>12-Month RTB Warranty</h3><p>Parts & labour for defects in normal use.</p></div>
-      <div class="feature"><h3>Clean Cable Management</h3><p>Airflow-first layout with GPU support for shipping.</p></div>
-      <div class="feature"><h3>Fast Dispatch</h3><p>Ready-to-ship units go out next working day.</p></div>
-    </div>
-  </section>
+    <section class="container section" id="why">
+      <h2>Why Choose Bob’s Builds</h2>
+      <div class="grid features">
+        <div class="feature"><h3>Thermally Tested</h3><p>30-minute OCCT + 3DMark. Proof on the desktop.</p></div>
+        <div class="feature"><h3>12-Month RTB Warranty</h3><p>Parts & labour for defects in normal use.</p></div>
+        <div class="feature"><h3>Clean Cable Management</h3><p>Airflow-first layout with GPU support for shipping.</p></div>
+        <div class="feature"><h3>Fast Dispatch</h3><p>Ready-to-ship units go out next working day.</p></div>
+      </div>
+    </section>
 
-  <noscript>
-    <p class="container tiny muted" style="padding-bottom:1rem">⚠️ For the best experience (navigation, shop, PWA), please enable JavaScript.</p>
-  </noscript>
+    <noscript>
+      <p class="container tiny muted" style="padding-bottom:1rem">⚠️ For the best experience (navigation, shop, PWA), please enable JavaScript.</p>
+    </noscript>
+  </main>
 
-    </main>
   <div id="site-footer"></div>
 
   <!-- Load includes, then main (PWA + extras) -->
