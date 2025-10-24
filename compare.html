@@ -4,23 +4,39 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Compare Builds — Bob’s Builds</title>
-  <meta name="description" content="Compare gaming PC builds side by side — CPU, GPU, RAM, storage, price."/>
-  <link rel="preload" as="style" href="assets/styles.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
-  <link rel="manifest" href="assets/manifest.webmanifest">
-  <meta name="theme-color" content="#0d0f14">
+  <meta name="description" content="Compare gaming PC builds side by side — CPU, GPU, RAM, storage, and price."/>
+
+  <link rel="canonical" href="https://wizardothefool.github.io/bobs-builds/compare.html"/>
+
+  <!-- Styles (standard link for reliability on Pages/PWA) -->
+  <link rel="stylesheet" href="assets/styles.css"/>
+
+  <!-- PWA -->
+  <link rel="manifest" href="assets/manifest.webmanifest"/>
+  <meta name="theme-color" content="#0d0f14"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Compare Builds — Bob’s Builds">
+  <meta property="og:description" content="Pick up to three PCs and compare key specs side by side.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wizardothefool.github.io/bobs-builds/compare.html">
+  <meta property="og:image" content="https://placehold.co/1200x630/png?text=Compare+Builds">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header"></div>
-  <main id="main">
+
+  <main id="main" tabindex="-1">
     <section class="container section">
-      <h2>Compare Builds</h2>
+      <h1>Compare Builds</h1>
       <div id="compare-wrap" class="grid"></div>
       <p class="muted tiny">Tip: Add builds to compare from the Shop or product pages.</p>
     </section>
   </main>
+
   <div id="site-footer"></div>
+
   <script src="assets/include.js"></script>
   <script src="assets/main.js"></script>
   <script>renderCompare();</script>
